@@ -40,7 +40,7 @@
       //measures.f = Fahrenheit;
       //measures.c = Celsius;
     
-        console.log("HOLA");
+      return "hola";
     
       var match = Medida.match(valor);
       if (match) {
