@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Eliminación del Switch Smell 
 
 Se pretende mejorar el código desarollado en la práctica anterior del conversor de temperatura para que cumpla con algunos principios del diseño de orientación a objetos. 
@@ -16,6 +15,3 @@ Se pretende mejorar el código desarollado en la práctica anterior del converso
 * [Web Teguayco Gutiérrez González](http://alu0100825503.github.io/)
 * [Web Óscar David  Martín Cabrera](http://oscar-dmc.github.io/)
 
-=======
-# eliminacion-del-switch-oscarteguayco
->>>>>>> f2dce1d70ae5f2670f65000cdf7fe877bbcc4619
