@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Práctica OOP en JS
 
 Práctica para mejorar el conversor de temperatura. El objetivo de esta práctica es aprender a desarrollar un código encapsulado en JavaScript, también hemos prácticado el concepto de 
@@ -16,3 +17,6 @@ orientacion a objetos. Se ha mejorado el número de temperaturas que acepta apli
 * [Web Teguayco Gutiérrez González](http://alu0100825503.github.io/)
 * [Web Óscar David  Martín Cabrera](http://oscar-dmc.github.io/)
 
+=======
+# eliminacion-del-switch-oscarteguayco
+>>>>>>> f2dce1d70ae5f2670f65000cdf7fe877bbcc4619
