@@ -1,8 +1,7 @@
 <<<<<<< HEAD
-# Práctica OOP en JS
+# Eliminación del Switch Smell 
 
-Práctica para mejorar el conversor de temperatura. El objetivo de esta práctica es aprender a desarrollar un código encapsulado en JavaScript, también hemos prácticado el concepto de 
-orientacion a objetos. Se ha mejorado el número de temperaturas que acepta apliandolo a la conversión en grados Kelvin.
+Se pretende mejorar el código desarollado en la práctica anterior del conversor de temperatura para que cumpla con algunos principios del diseño de orientación a objetos. 
 
 **Repositorio GitHuB**
 
