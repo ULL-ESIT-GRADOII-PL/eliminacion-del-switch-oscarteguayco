@@ -1,10 +1,9 @@
 (function(exports) {
     "use strict";
-    var XRegExp = require('xregexp');
-    
+
     function Medida(valor, tipo) {
-        var xregexp = XRegExp('(?<numero> [0-9]{2} ) # valor \n' + 
-                             '(?<temp>  [a-zA-Z]+ ) # tipo    ');
+       // var xregexp = XRegExp('(?<numero> [0-9]{2} ) # valor \n' + 
+         //                     '(?<temp>  [a-zA-Z]+ ) # tipo    ');
             
         // TO-DO: arreglar XRegExp    
         var regexp = /([0-9]{2})([a-zA-Z]+)/;    
@@ -23,42 +22,39 @@
     };
     
     Medida.match = function(valor) {
-      var expresion = XRegExp('(?<num>   [-+]?[^\\.][0-9]+([\\.][0-9]+)?\\s*(?:e[+-]?[ ]*[0-9]+)?)\\s*   # numero       \n' +
-                               '(?<temp1>    [fkcFKC])\\s*                                       # temperatura1 \n' +
-                               '(?<to>       (?:to)?)\\s*                                        # to           \n' +
-                               '(?<temp2>    [fkcFKC])\\s*                                       # temperatura2','x');
+      var regexp = /^\s*([-+]?\d+(?:\.\d+)?(?:e[+-]?\d+)?)\s*([fkc])\s*(?:to)?\s*([fkc])$/i;
     
-      valor = XRegExp.exec(valor, expresion);
+      valor = regexp.exec(valor);
       return valor;
-    }
+    };
     
     Medida.medidas = {};
     
     Medida.convertir = function(valor) {
       var measures = Medida.measures;
     
-      //measures.f = Fahrenheit;
       //measures.c = Celsius;
-    
-      return "hola";
+      //measures.f = Fahrenheit;
     
       var match = Medida.match(valor);
       if (match) {
-        var numero = match.numero,
-            tipo   = match.tipo,
-            destino = match.destino;
+        var numero = match[1],
+            tipo   = match[2],
+            destino = match[3];
     
         try {
-          var source = new measures[tipo](numero);              // new Fahrenheit(32)
-          var target = "to " + measures[destino].name;          // "toCelsius"
-          return source[target]().toFixed(2) + " " + target;    // "0 Celsius"
+          var source = new Fahrenheit("32");
+          return source.toCelsius();
+          //var source = new measures[tipo](numero);              // new Fahrenheit(32)
+          //var target = "to " + measures[destino].name;          // "toCelsius"
+          //return source[target]().toFixed(2) + " " + target;    // "0 Celsius"
         }
         catch(err) {
           return 'Desconozco como convertir desde "' + tipo + '" hasta "' + destino + '"';
         }
       }
       else
-        return "Introduzca una temperatura valida: 330e-1 F to C";
+        return "Introduzca una temperatura valida: 330e-1 F to C"; 
     };
     
     exports.Medida = Medida;
