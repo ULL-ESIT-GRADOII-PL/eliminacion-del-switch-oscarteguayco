@@ -2,8 +2,8 @@
     "use strict";
 
     function Medida(valor, tipo) {
-        var regexp = XRegExp('(?<number> \\d+) # 	valor \n' +
-													 '(?<tipo> \w)   #type for number','x');
+        var regexp = XRegExp('(?<number> [+-]?\\d+(\\.\\d+)?([e][+-]?\\d+)?\\s*) # valor \n' +
+													   '(?<tipo> \w)                                       # tipo', 'x');
    
         if (!tipo) {  
             var match = XRegExp.exec(valor, regexp);  
@@ -22,9 +22,9 @@
     
     Medida.match = function(valor) {
       var regexp = XRegExp('(?<numero> [+-]?\\d+(\\.\\d+)?([e][+-]?\\d+)?[ ]*) # valor \n' + 
-											'(?<tipo> [cfk])       # tipo de entrada   \n' + 
-											'(?<to> \\s*(?:to)?\\s*)       # to opcional \n' +
-											'(?<destino> [cfk])    # tipo destino', 'x');
+											'(?<tipo> [fck])          # tipo de entrada   \n' + 
+											'(?<to> \\s*(?:to)?\\s*)  # to opcional \n' +
+											'(?<destino> [fck])       # tipo destino', 'x');
 											
 	    var match = XRegExp.exec(valor, regexp);
       return match;
@@ -43,11 +43,14 @@
             console.log("destino: " + destino);
         
         try {
+          console.log("en try");
           var source = new measures[tipo](numero);              // new Fahrenheit(32)
+          console.log(source);
           var target = "to" + measures[destino].name;           // "toCelsius"
           return source[target]().toFixed(2) + " " + target;    // "0 Celsius"
         }
         catch(err) {
+          console.log(err);
           return 'Desconozco como convertir desde "' + tipo + '" hasta "' + destino + '"';
         }
       }
