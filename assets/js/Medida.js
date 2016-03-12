@@ -21,7 +21,7 @@
     };
     
     Medida.match = function(valor) {
-      var regexp = XRegExp('^(?<numero> [+-]?\\d+(\\.\\d+)?([e][+-]?\\d+)?[ ]*) # valor \n' + 
+      var regexp = XRegExp('(?<numero> [+-]?\\d+(\\.\\d+)?([e][+-]?\\d+)?[ ]*) # valor \n' + 
 											'(?<tipo> [cfk])       # tipo de entrada   \n' + 
 											'(?<to> \\s*(?:to)?\\s*)       # to opcional \n' +
 											'(?<destino> [cfk])    # tipo destino', 'x');
@@ -52,7 +52,7 @@
         }
       }
       else
-        return "Introduzca una temperatura valida: 330e-1 F to C"; 
+        return "Introduzca una temperatura válida: 330e-1 F to C"; 
     };
     
     exports.Medida = Medida;

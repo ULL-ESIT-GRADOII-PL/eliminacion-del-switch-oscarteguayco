@@ -72,7 +72,6 @@
     }
     ///////////////////////////////////////////////////////////
 
-    // Vale, ni idea de por qué poniendo esto aquí y no en Medida.js funciona XDDD
     Medida.measures = {
       "f": Fahrenheit,
       "c": Celsius,
