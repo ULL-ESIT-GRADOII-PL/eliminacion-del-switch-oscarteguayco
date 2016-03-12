@@ -5,7 +5,7 @@
         var regexp = XRegExp('^(?<numero> [+-]?\\d+(\\.\\d+)?([e][+-]?\\d+)?\\s*) # 	valor \n' +
 													 '(?<tipo> [a-zA-Z])                                     # tipo','x');
             
-        console.log(valor); 
+        console.log("valor en Medida(): " + valor); 
         if (!tipo) {  
             var match = XRegExp.exec(valor, regexp);  
             console.log(match);
@@ -29,6 +29,7 @@
 											'(?<tipo> [cfk])       # tipo de entrada   \n' + 
 											'(?<to> \\s*(?:to)?\\s*)       # to opcional \n' +
 											'(?<destino> [cfk])    # tipo destino', 'x');
+											
 	    var match = XRegExp.exec(valor, regexp);
       return match;
     };
