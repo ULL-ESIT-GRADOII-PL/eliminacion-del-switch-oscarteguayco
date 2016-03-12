@@ -2,27 +2,23 @@
     "use strict";
 
     function Medida(valor, tipo) {
-        var regexp = XRegExp('^(?<numero> [+-]?\\d+(\\.\\d+)?([e][+-]?\\d+)?\\s*) # 	valor \n' +
-													 '(?<tipo> [a-zA-Z])                                     # tipo','x');
-            
-        console.log("valor en Medida(): " + valor); 
+        var regexp = XRegExp('(?<number> \\d+) # 	valor \n' +
+													 '(?<tipo> \w)   #type for number','x');
+   
         if (!tipo) {  
             var match = XRegExp.exec(valor, regexp);  
             console.log(match);
-            this.valor = match.numero;
-            this.tipo = match.tipo;
+            var _valor = match.numero;
+            var _tipo = match.tipo;
             
         } else {
-            this.valor = valor;
-            this.tipo = tipo;
+            var _valor = valor;
+            var _tipo = tipo;
         }
+        
+        this.getValor = function() { return _valor; };
+        this.getTipo = function() { return _tipo; };
     };
-    
-    Medida.measures = {
-      "f": "Fahrenheit",
-      "c": "Celsius",
-      "k": "Kelvin"
-    }
     
     Medida.match = function(valor) {
       var regexp = XRegExp('^(?<numero> [+-]?\\d+(\\.\\d+)?([e][+-]?\\d+)?[ ]*) # valor \n' + 
@@ -34,34 +30,24 @@
       return match;
     };
     
-    Medida.medidas = {};
-    
     Medida.convertir = function(valor) {
       var measures = Medida.measures;
     
-      console.log("valor: " + valor);
       var match = Medida.match(valor);
-      console.log("match: " + match);
       if (match) {
         var numero = match.numero,
             tipo   = match.tipo,
             destino = match.destino;
-            console.log(numero);
-            console.log(tipo);
-            console.log(destino);
-    
+            console.log("numero: " + numero);
+            console.log("tipo: " + tipo);
+            console.log("destino: " + destino);
+        
         try {
-          console.log("en try");
-          console.log(measures[tipo]);
           var source = new measures[tipo](numero);              // new Fahrenheit(32)
-          console.log("En try 2");
-          console.log("source" + source);
-          var target = "to " + measures[destino].name;          // "toCelsius"
-          console.log("target" + target);
+          var target = "to" + measures[destino].name;           // "toCelsius"
           return source[target]().toFixed(2) + " " + target;    // "0 Celsius"
         }
         catch(err) {
-          console.log(err);
           return 'Desconozco como convertir desde "' + tipo + '" hasta "' + destino + '"';
         }
       }

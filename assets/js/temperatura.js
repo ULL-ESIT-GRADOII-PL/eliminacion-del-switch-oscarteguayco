@@ -7,71 +7,77 @@
     }
     
     // TEMPERATURA HEREDA DE MEDIDA
-    Temperatura.prototype = new Medida();
+    Temperatura.prototype = Object.create(Medida.prototype);
     Temperatura.prototype.constructor = Temperatura;
-    
-    
-    // FAHRENHEIT
+  
+  
+    // FAHRENHEIT //////////////////////////////////////////////  
+    Fahrenheit.prototype = Object.create(Temperatura.prototype);
+    Fahrenheit.prototype.constructor = Fahrenheit;
+  
     function Fahrenheit(valor) {
-      Temperatura.call(this, valor);
+      Temperatura.call(this, valor, "f");
       this.name = "Fahrenheit";
     }
     
-    Fahrenheit.prototype = new Temperatura();
-    Fahrenheit.prototype.constructor = Fahrenheit;
-    
     Fahrenheit.prototype.toCelsius = function () {
-      var converted = (this.valor - 32) * 5/9;
-      //var cel = new Celsius(converted);
+      var converted = (this.getValor() - 32) * 5/9;
       return converted;
     }
     
     Fahrenheit.prototype.toKelvin = function () {
-      var converted = ((this.valor - 32) / (9/5)) + 273.15;
-      var kel = new Kelvin(converted);
-      return kel;
+      var converted = ((this.getValor() - 32) / (9/5)) + 273.15;
+      return converted;
     }
+    ////////////////////////////////////////////////////////////
     
     
-    // CELSIUS
-    function Celsius(valor) {
-      Temperatura.call(this, valor);
-      this.name = "Celsius";
-    }
-    
-    Celsius.prototype = new Temperatura();
+    // CELSIUS /////////////////////////////////////////////////
+    Celsius.prototype = Object.create(Temperatura.prototype);
     Celsius.prototype.constructor = Celsius;
     
+    function Celsius(valor) {
+      Temperatura.call(this, valor, "c");
+      this.name = "Celsius";
+    }
+  
     Celsius.prototype.toFahrenheit = function () {
-      var result = (this.valor * 9/5)+32;
-      var cel = new Celsius(result);
-      return cel;
+      var converted = (this.getValor() * 9/5)+32;
+      return converted;
     }
     
     Celsius.prototype.toKelvin = function () {
-      var result = parseFloat(this.valor) + 273.15;
-      return result;
+      var converted = parseFloat(this.getValor()) + 273.15;
+      return converted;
     }
     
     
-    // KELVIN 
+    // KELVIN /////////////////////////////////////////////////
+    Kelvin.prototype = Object.create(Temperatura.prototype);
+    Kelvin.prototype.constructor = Kelvin;
+    
     function Kelvin(valor) {
-      Temperatura.call(this, valor);
+      Temperatura.call(this, valor, "k");
       this.name = "Kelvin";
     }
     
-    Kelvin.prototype = new Temperatura();
-    Kelvin.prototype.constructor = Kelvin;
-    
     Kelvin.prototype.toCelsius = function () {
-      var converted = this.valor - 273.15;
+      var converted = this.getValor() - 273.15;
       return converted;
     }
     
     Kelvin.prototype.toFahrenheit = function () {
-      var result = ((this.valor - 273.15) * 9/5) + 32;
+      var result = ((this.getValor() - 273.15) * 9/5) + 32;
       return result;
     }
+    ///////////////////////////////////////////////////////////
+
+    // Vale, ni idea de por qué poniendo esto aquí y no en Medida.js funciona XDDD
+    Medida.measures = {
+      "f": Fahrenheit,
+      "c": Celsius,
+      "k": Kelvin
+    };
 
     exports.Temperatura = Temperatura;
     exports.Celsius = Celsius;
