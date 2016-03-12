@@ -1,0 +1,132 @@
+html {
+    background:url(../images/fondo.jpg) no-repeat;
+}
+
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #222;
+}
+
+footer a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.app {
+    margin-top: 10%;
+}
+
+h4 {
+    font-weight: 700;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 50px;
+    text-align: center;
+    border: 3px solid black;
+    border-radius:20px;
+    background-color:rgba(17, 64, 64, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+span {
+    color: green;
+    font-size: 20px;
+}
+
+label{
+    font-size: 20px;
+}
+
+p{
+    font-weight: bold;
+}
+
+.piePagina{
+    color:rgba(255, 255, 255, 1);
+}
+
+#fahrenheitImage{
+    position: absolute;
+    border-radius: 20px 20px 20px 20px;
+    box-shadow: 0px 7px 15px rgba(0, 0, 0, 0.8);
+    filter: opacity;
+    -webkit-filter:opacity(0);
+    animation: 10s verFI  linear infinite alternate;
+    -webkit-animation: 10s verFI  linear infinite alternate;
+}
+#celsiusImage{
+    position: absolute;
+    filter: opacity;
+    border-radius: 20px 20px 20px 20px;
+    box-shadow: 0px 7px 15px rgba(0, 0, 0, 0.8);
+    -webkit-filter:opacity(0);
+    animation: 10s verCI  linear infinite alternate;
+    -webkit-animation: 10s verCI  linear infinite alternate;
+}
+
+#kelvinImagen{
+    position: absolute;
+    border-radius: 20px 20px 20px 20px;
+    box-shadow: 0px 7px 15px rgba(0, 0, 0, 0.8);
+    filter: opacity;
+    -webkit-filter:opacity(0);
+    animation: 10s verKI  linear infinite alternate;
+    -webkit-animation: 10s verKI  linear infinite alternate;
+}
+@media (max-width: 550px) {
+    footer {
+        text-align: center;
+    }
+}
+
+@keyframes verCI{
+    0%{
+        filter: opacity(1);
+        -webkit-filter:opacity(1);
+        /*border-radius:100%;*/
+    }
+    50%{
+        filter: opacity(0);
+        -webkit-filter:opacity(0);
+    }
+    100%{
+        filter: opacity(0);
+        -webkit-filter:opacity(0);
+    }
+}
+
+@keyframes verFI{
+    0%{
+        filter: opacity(0);
+        -webkit-filter:opacity(0);
+    }
+    50%{
+        filter:opacity(1);
+        -webkit-filter:opacity(1);
+        /*border-radius:100%;*/
+    }
+    100%{
+        filter: opacity(0);
+        -webkit-filter:opacity(0);
+    }
+}
+
+@keyframes verKI{
+    0%{
+        filter: opacity(0);
+        -webkit-filter:opacity(0);
+    }
+    50%{
+        filter: opacity(0);
+        -webkit-filter:opacity(0);
+    }
+    100%{
+        filter:opacity(1);
+        -webkit-filter:opacity(1);
+        /*border-radius:100%;*/
+    }
+}
