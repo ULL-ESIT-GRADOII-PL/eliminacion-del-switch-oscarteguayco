@@ -2,18 +2,15 @@
     "use strict";
 
     function Medida(valor, tipo) {
-       // var xregexp = XRegExp('(?<numero> [0-9]{2} ) # valor \n' + 
-         //                     '(?<temp>  [a-zA-Z]+ ) # tipo    ');
+        var regexp = XRegExp('^(?<numero> [+-]?\\d+(\\.\\d+)?([e][+-]?\\d+)?\\s*) # 	valor \n' +
+													 '(?<tipo> [a-zA-Z])                                     # tipo','x');
             
-        // TO-DO: arreglar XRegExp    
-        var regexp = /([0-9]{2})([a-zA-Z]+)/;    
-            
-        // Si no hay tipo, puede estar en 'valor'                   
+        console.log(valor); 
         if (!tipo) {  
-            var match = regexp.exec(valor);
+            var match = XRegExp.exec(valor, regexp);  
             console.log(match);
-            this.valor = match[1];
-            this.tipo = match[2];
+            this.valor = match.numero;
+            this.tipo = match.tipo;
             
         } else {
             this.valor = valor;
@@ -21,11 +18,19 @@
         }
     };
     
-    Medida.match = function(valor) {
-      var regexp = /^\s*([-+]?\d+(?:\.\d+)?(?:e[+-]?\d+)?)\s*([fkc])\s*(?:to)?\s*([fkc])$/i;
+    Medida.measures = {
+      "f": "Fahrenheit",
+      "c": "Celsius",
+      "k": "Kelvin"
+    }
     
-      valor = regexp.exec(valor);
-      return valor;
+    Medida.match = function(valor) {
+      var regexp = XRegExp('^(?<numero> [+-]?\\d+(\\.\\d+)?([e][+-]?\\d+)?[ ]*) # valor \n' + 
+											'(?<tipo> [cfk])       # tipo de entrada   \n' + 
+											'(?<to> \\s*(?:to)?\\s*)       # to opcional \n' +
+											'(?<destino> [cfk])    # tipo destino', 'x');
+	    var match = XRegExp.exec(valor, regexp);
+      return match;
     };
     
     Medida.medidas = {};
@@ -33,23 +38,29 @@
     Medida.convertir = function(valor) {
       var measures = Medida.measures;
     
-      //measures.c = Celsius;
-      //measures.f = Fahrenheit;
-    
+      console.log("valor: " + valor);
       var match = Medida.match(valor);
+      console.log("match: " + match);
       if (match) {
-        var numero = match[1],
-            tipo   = match[2],
-            destino = match[3];
+        var numero = match.numero,
+            tipo   = match.tipo,
+            destino = match.destino;
+            console.log(numero);
+            console.log(tipo);
+            console.log(destino);
     
         try {
-          var source = new Fahrenheit("32");
-          return source.toCelsius();
-          //var source = new measures[tipo](numero);              // new Fahrenheit(32)
-          //var target = "to " + measures[destino].name;          // "toCelsius"
-          //return source[target]().toFixed(2) + " " + target;    // "0 Celsius"
+          console.log("en try");
+          console.log(measures[tipo]);
+          var source = new measures[tipo](numero);              // new Fahrenheit(32)
+          console.log("En try 2");
+          console.log("source" + source);
+          var target = "to " + measures[destino].name;          // "toCelsius"
+          console.log("target" + target);
+          return source[target]().toFixed(2) + " " + target;    // "0 Celsius"
         }
         catch(err) {
+          console.log(err);
           return 'Desconozco como convertir desde "' + tipo + '" hasta "' + destino + '"';
         }
       }

@@ -2,8 +2,7 @@
     "use strict";
 
     // TEMPERATURA
-    function Temperatura(valor,tipo)
-    {
+    function Temperatura(valor,tipo) {
       Medida.call(this, valor, tipo);
     }
     
@@ -13,9 +12,9 @@
     
     
     // FAHRENHEIT
-    function Fahrenheit(valor)
-    {
+    function Fahrenheit(valor) {
       Temperatura.call(this, valor);
+      this.name = "Fahrenheit";
     }
     
     Fahrenheit.prototype = new Temperatura();
@@ -35,9 +34,9 @@
     
     
     // CELSIUS
-    function Celsius(valor)
-    {
+    function Celsius(valor) {
       Temperatura.call(this, valor);
+      this.name = "Celsius";
     }
     
     Celsius.prototype = new Temperatura();
@@ -56,9 +55,9 @@
     
     
     // KELVIN 
-    function Kelvin(valor)
-    {
+    function Kelvin(valor) {
       Temperatura.call(this, valor);
+      this.name = "Kelvin";
     }
     
     Kelvin.prototype = new Temperatura();
